@@ -1,5 +1,6 @@
 ---
 const pageTitle = 'About Me'
+import Layout from '../layouts/Layout.astro'
 
 const identity = {
   firstName: 'Miguel',
@@ -29,49 +30,52 @@ const goal = 3
     <title>{pageTitle}</title>
   </head>
   <body>
-    <a href="/">Home</a>
-    <a href="/about/">About</a>
-    <a href="/blog/">Blog</a>
-    <h1>{pageTitle}</h1>
-    <h2>... and my new Astro site!</h2>
+    <Layout title={pageTitle}>
+      <h1 class="text-purple-700 text-4xl">{pageTitle}</h1>
+      <h2>... and my new Astro site!</h2>
 
-    <p>
-      I am working through Astro's introductory tutorial. This is the second
-      page on my website, and it's the first one I built myself!
-    </p>
+      <p>
+        I am working through Astro's introductory tutorial. This is the second
+        page on my website, and it's the first one I built myself!
+      </p>
 
-    <p>
-      This site will update as I complete more of the tutorial, so keep checking
-      back and see how my journey is going!
-    </p>
+      <p>
+        This site will update as I complete more of the tutorial, so keep
+        checking back and see how my journey is going!
+      </p>
 
-    <p>Here are some fun facts about me</p>
-    {happy && <p>I am happy to be here!</p>}
-    {finished && <p>I have finished the tutorial!</p>}
-    {
-      goal === 3 ? (
-        <p>My goal is to finish in 3 days!</p>
-      ) : (
-        <p>My goal is to not finish in 3 days!</p>
-      )
-    }
-    <ul>
-      <li>My name is {identity.firstName}</li>
-      <li>
-        I live in {identity.country} and I work as a {identity.occupation}.
-      </li>
+      <p>Here are some fun facts about me</p>
+      {happy && <p>I am happy to be here!</p>}
+      {finished && <p>I have finished the tutorial!</p>}
       {
-        identity.hobbies.length >= 2 && (
-          <li>
-            Two of my hobbies are: {identity.hobbies[0]} and{' '}
-            {identity.hobbies[1]}
-          </li>
+        goal === 3 ? (
+          <p>My goal is to finish in 3 days!</p>
+        ) : (
+          <p>My goal is to not finish in 3 days!</p>
         )
       }
-    </ul>
-    <p>My skills are:</p>
-    <ul>
-      {skills.map((skill) => <li>{skill}</li>)}
-    </ul>
+      <ul>
+        <li>My name is {identity.firstName}</li>
+        <li>
+          I live in {identity.country} and I work as a {identity.occupation}.
+        </li>
+        {
+          identity.hobbies.length >= 2 && (
+            <li>
+              Two of my hobbies are: {identity.hobbies[0]} and{' '}
+              {identity.hobbies[1]}
+            </li>
+          )
+        }
+      </ul>
+      <p>My skills are:</p>
+      <ul>
+        {
+          skills.map((skill) => (
+            <li class="font-bold text-green-600">{skill}</li>
+          ))
+        }
+      </ul>
+    </Layout>
   </body>
 </html>
